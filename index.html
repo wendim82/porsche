@@ -1023,8 +1023,8 @@
       </div>
       <div class="tc-spec">
         <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 22a12 12 0 1 1 24 0"/><path d="M16 22l6-7"/><path d="M8 13.5l1.6 1.2M16 10v2M24 13.5l-1.6 1.2"/></svg>
-        <span>0 – 100 km/h</span>
-        <b><em class="tc-count">0,0</em><small>s</small></b>
+        <span>Velocidade máxima</span>
+        <b><em class="tc-count">0</em><small>km/h</small></b>
       </div>
       <div class="tc-spec">
         <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M18 3 8 18h7l-2 11 11-16h-7z"/></svg>
@@ -2020,12 +2020,12 @@
     if (!sec) return;
     // Dados oficiais Porsche. Combustão: autonomia estimada = tanque ÷ consumo combinado.
     const cars = [
-      {name:'Porsche Taycan Turbo S', price:'R$ 1.080.000', word:'TAYCAN',  line:'TAYCAN <em>Turbo S</em>',     range:634, rangeLabel:'Autonomia (WLTP)', acc:2.4, power:952},
-      {name:'Porsche 718 Boxster GTS 4.0', price:'R$ 719.000', word:'BOXSTER', line:'718 <em>Boxster GTS</em>', range:634, rangeLabel:'Autonomia (est.)', acc:4.0, power:400},
-      {name:'Porsche 911 GT3 RS', price:'R$ 3.150.000', word:'GT3 RS',  line:'911 <em>GT3 RS</em>',         range:478, rangeLabel:'Autonomia (est.)', acc:3.2, power:525},
-      {name:'Porsche 911 GT2 RS', price:'R$ 4.218.089', word:'GT2 RS',  line:'911 <em>GT2 RS</em>',         range:542, rangeLabel:'Autonomia (est.)', acc:2.8, power:700},
-      {name:'Porsche 911 Carrera S', price:'R$ 868.900', word:'CARRERA', line:'911 <em>Carrera S</em>',      range:624, rangeLabel:'Autonomia (est.)', acc:3.5, power:480},
-      {name:'Porsche 911 Turbo S', price:'R$ 1.550.000', word:'TURBO S', line:'911 <em>Turbo S</em>',        range:543, rangeLabel:'Autonomia (est.)', acc:2.5, power:711}
+      {name:'Porsche Taycan Turbo S', price:'R$ 1.080.000', word:'TAYCAN',  line:'TAYCAN <em>Turbo S</em>',     range:634, rangeLabel:'Autonomia (WLTP)', acc:2.4, power:952, vmax:260},
+      {name:'Porsche 718 Boxster GTS 4.0', price:'R$ 719.000', word:'BOXSTER', line:'718 <em>Boxster GTS</em>', range:634, rangeLabel:'Autonomia', acc:4.0, power:400, vmax:288},
+      {name:'Porsche 911 GT3 RS', price:'R$ 3.150.000', word:'GT3 RS',  line:'911 <em>GT3 RS</em>',         range:478, rangeLabel:'Autonomia', acc:3.2, power:525, vmax:296},
+      {name:'Porsche 911 GT2 RS', price:'R$ 4.218.089', word:'GT2 RS',  line:'911 <em>GT2 RS</em>',         range:542, rangeLabel:'Autonomia', acc:2.8, power:700, vmax:340},
+      {name:'Porsche 911 Carrera S', price:'R$ 868.900', word:'CARRERA', line:'911 <em>Carrera S</em>',      range:624, rangeLabel:'Autonomia', acc:3.5, power:480, vmax:308},
+      {name:'Porsche 911 Turbo S', price:'R$ 1.550.000', word:'TURBO S', line:'911 <em>Turbo S</em>',        range:543, rangeLabel:'Autonomia', acc:2.5, power:711, vmax:322}
     ];
     const imgs = [...sec.querySelectorAll('.tc-unit')];
     const word = sec.querySelector('#tcWord'), model = sec.querySelector('.tc-model'),
@@ -2048,7 +2048,7 @@
     };
     const paintData = i => {
       const c = cars[i];
-      countTo(counts[0], c.range, 0); countTo(counts[1], c.acc, 1); countTo(counts[2], c.power, 0);
+      countTo(counts[0], c.range, 0); countTo(counts[1], c.vmax, 0); countTo(counts[2], c.power, 0);
       num.textContent = String(i + 1).padStart(2, '0');
       dots.forEach((d, k) => d.classList.toggle('on', k === i));
       if (price.dataset.car !== String(i)) {
